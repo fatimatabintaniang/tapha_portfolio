@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moustapha Niang | Technicien Supérieur en Réseaux & Télécom</title>
+    
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Portfolio de Moustapha Niang, Technicien Supérieur en Réseaux et Télécommunications spécialisé en administration réseau, téléphonie IP et systèmes Windows Server.">
+    <meta name="keywords" content="Réseaux, Télécom, Zabbix, Windows Server, Administration Système, Technicien, Portfolio">
+    <meta name="author" content="Moustapha Niang">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS & DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jsPDF pour génération de CV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Configuration Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#4361ee',
+                        'custom-purple': '#7209b7',
+                        'custom-accent': '#4cc9f0',
+                        'custom-success': '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body data-theme="dark">
+    <!-- Header & Navigation -->
+    <header id="header" class="transition-all duration-300">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <a href="#accueil" class="logo group">
+                    <span class="font-bold text-xl">MN</span>
+                    <div class="logo-dot"></div>
+                </a>
+                
+                <!-- Navigation Desktop -->
+                <ul class="nav-links">
+                    <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                    <li><a href="#apropos" class="nav-link">À propos</a></li>
+                    <li><a href="#projets" class="nav-link">Projets</a></li>
+                    <li><a href="#competences" class="nav-link">Compétences</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <!-- Actions du header -->
+                <div class="navbar-end">
+                    <!-- Bouton thème -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Changer de thème">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Bouton télécharger CV -->
+                    <button id="downloadCV" class="btn btn-download" title="Télécharger mon CV">
+                        <i class="fas fa-download"></i>
+                        <span class="hidden md:inline">Télécharger CV</span>
+                    </button>
+                    
+                    <!-- Menu mobile -->
+                    <button class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+  <!-- Hero Section -->
+<section id="accueil" class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <!-- Texte principal -->
+            <div class="hero-text">
+                <div class="hero-badge animate-pulse">Technicien Supérieur</div>
+                <h1 class="animate-fade-in">Moustapha Niang</h1>
+                <div class="hero-subtitle animate-fade-in-delay">Spécialiste Réseaux & Télécommunications</div>
+                <p class="animate-fade-in-delay-2">Je suis passionné par les technologies de l'information et de la communication, avec une expertise en administration réseau, téléphonie IP, systèmes Windows Server et sécurité informatique.</p>
+                
+                <!-- Boutons d'action -->
+                <div class="btn-group">
+                    <a href="#contact" class="btn animate-scale">
+                        <i class="fas fa-paper-plane"></i> Me contacter
+                    </a>
+                    <a href="#projets" class="btn btn-outline animate-scale">
+                        <i class="fas fa-code"></i> Voir mes projets
+                    </a>
+                </div>
+                
+                <!-- Réseaux sociaux -->
+                <div class="social-icons mt-8">
+                    <a href="#" class="social-icon" aria-label="GitHub" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:niangtch43@gmail.com" class="social-icon" aria-label="Email" title="Envoyer un email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Image de profil avec forme décorative -->
+            <div class="hero-image">
+                <div class="image-frame">
+                    <div class="frame-decoration frame-1"></div>
+                    <div class="frame-decoration frame-2"></div>
+                    <div class="frame-decoration frame-3"></div>
+                    <div class="image-wrapper">
+                        <img src="image/Sans titre-1.png" 
+                             alt="Moustapha Niang - Technicien en réseaux" 
+                             class="profile-img animate-float-slow"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="apropos" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">À propos de moi</h2>
+                <p class="section-subtitle">Technicien supérieur en réseaux et télécom, passionné par l'innovation technologique et toujours à la recherche de nouveaux défis.</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-intro">
+                        <p>Je suis un technicien supérieur en réseaux et télécommunications, diplômé en 2025. Mon parcours académique et mes expériences de stage m'ont permis d'acquérir des compétences solides dans divers domaines des technologies de l'information et de la communication.</p>
+                        <p>Je suis doté d'un esprit d'équipe, discret, rigoureux et possède une grande capacité d'adaptation et d'apprentissage rapide. Je maîtrise plusieurs langues dont le français et le wolof, et j'ai de bonnes compétences en bureautique.</p>
+                    </div>
+                    
+                    <!-- Statistiques -->
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="95">0%</div>
+                            <div class="stat-label">Esprit d'équipe</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="90">0%</div>
+                            <div class="stat-label">Rigueur</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="95">0%</div>
+                            <div class="stat-label">Adaptation</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="90">0%</div>
+                            <div class="stat-label">Apprentissage rapide</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projets" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Projets Réalisés</h2>
+                <p class="section-subtitle">Des projets concrets qui démontrent mes compétences en réseaux et télécommunications.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="project-tags">
+                            <span class="project-tag">Zabbix</span>
+                            <span class="project-tag">Supervision</span>
+                            <span class="project-tag">Réseau</span>
+                        </div>
+                    </div>
+                    <h3>Conception et déploiement d'une solution de supervision réseau basée sur Zabbix</h3>
+                    <p class="project-description">
+                        Mise en place complète d'un système de monitoring réseau permettant la surveillance en temps réel des équipements et services informatiques.
+                    </p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4><i class="fas fa-bullseye"></i> Objectifs</h4>
+                            <ul class="project-list">
+                                <li>Surveillance proactive des équipements réseau</li>
+                                <li>Alertes automatisées en cas d'anomalies</li>
+                                <li>Tableaux de bord personnalisés</li>
+                                <li>Reporting des performances</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h4><i class="fas fa-tools"></i> Technologies utilisées</h4>
+                            <div class="tech-stack">
+                                <span class="tech-item">Zabbix</span>
+                                <span class="tech-item">Linux</span>
+                                <span class="tech-item">SNMP</span>
+                                <span class="tech-item">MySQL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h4><i class="fas fa-chart-line"></i> Résultats</h4>
+                            <ul class="project-list">
+                                <li>Réduction de 40% du temps d'indisponibilité</li>
+                                <li>Détection proactive des problèmes</li>
+                                <li>Optimisation des performances réseau</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-outline btn-sm project-detail-btn" data-project="1">
+                            <i class="fas fa-eye"></i> Voir les détails
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="project-tags">
+                            <span class="project-tag">Windows Server</span>
+                            <span class="project-tag">Infrastructure</span>
+                            <span class="project-tag">Active Directory</span>
+                        </div>
+                    </div>
+                    <h3>Déploiement d'une infrastructure réseau basée sur Windows Server</h3>
+                    <p class="project-description">
+                        Installation et configuration complète d'une infrastructure réseau d'entreprise avec Windows Server comme pierre angulaire.
+                    </p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <h4><i class="fas fa-bullseye"></i> Objectifs</h4>
+                            <ul class="project-list">
+                                <li>Mise en place d'Active Directory</li>
+                                <li>Gestion centralisée des utilisateurs</li>
+                                <li>Partage de ressources sécurisé</li>
+                                <li>Gestion des politiques de groupe</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h4><i class="fas fa-tools"></i> Technologies utilisées</h4>
+                            <div class="tech-stack">
+                                <span class="tech-item">Windows Server 2022</span>
+                                <span class="tech-item">Active Directory</span>
+                                <span class="tech-item">DNS</span>
+                                <span class="tech-item">DHCP</span>
+                                <span class="tech-item">GPO</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h4><i class="fas fa-chart-line"></i> Résultats</h4>
+                            <ul class="project-list">
+                                <li>Infrastructure réseau sécurisée et scalable</li>
+                                <li>Gestion simplifiée des utilisateurs</li>
+                                <li>Politiques de sécurité homogènes</li>
+                                <li>Haute disponibilité des services</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-outline btn-sm project-detail-btn" data-project="2">
+                            <i class="fas fa-eye"></i> Voir les détails
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competences Section -->
+    <section id="competences" class="competences">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Compétences Professionnelles</h2>
+                <p class="section-subtitle">Mes domaines d'expertise et compétences techniques acquises au fil de mon parcours.</p>
+            </div>
+            
+            <div class="competences-grid">
+                <!-- Compétence 1 -->
+                <div class="competence-card">
+                    <div class="competence-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Réseaux & Télécom</h3>
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check"></i> Câblage réseau informatique</li>
+                        <li><i class="fas fa-check"></i> Configuration téléphonie sur IP</li>
+                        <li><i class="fas fa-check"></i> Déploiement Windows Server</li>
+                        <li><i class="fas fa-check"></i> Supervision réseau (Zabbix)</li>
+                        <li><i class="fas fa-check"></i> Configuration réseaux sans fil</li>
+                        <li><i class="fas fa-check"></i> Sécurisation des réseaux</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Réseaux</span>
+                        <span class="skill-tag">VoIP</span>
+                        <span class="skill-tag">Zabbix</span>
+                        <span class="skill-tag">Wi-Fi</span>
+                    </div>
+                </div>
+                
+                <!-- Compétence 2 -->
+                <div class="competence-card">
+                    <div class="competence-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Administration Système</h3>
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check"></i> Installation systèmes Windows & Linux</li>
+                        <li><i class="fas fa-check"></i> Configuration et sécurisation réseau</li>
+                        <li><i class="fas fa-check"></i> Mise en service équipements réseaux</li>
+                        <li><i class="fas fa-check"></i> Configuration access points</li>
+                        <li><i class="fas fa-check"></i> Gestion Active Directory</li>
+                        <li><i class="fas fa-check"></i> Virtualisation (Hyper-V)</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Windows Server</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Sécurité</span>
+                        <span class="skill-tag">AD</span>
+                    </div>
+                </div>
+                
+                <!-- Compétence 3 -->
+                <div class="competence-card">
+                    <div class="competence-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Bureautique & Soft Skills</h3>
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check"></i> Maîtrise Word, PowerPoint, Excel</li>
+                        <li><i class="fas fa-check"></i> Français (courant)</li>
+                        <li><i class="fas fa-check"></i> Wolof (langue maternelle)</li>
+                        <li><i class="fas fa-check"></i> Recherche et documentation</li>
+                        <li><i class="fas fa-check"></i> Travail en équipe</li>
+                        <li><i class="fas fa-check"></i> Résolution de problèmes</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Office</span>
+                        <span class="skill-tag">Français</span>
+                        <span class="skill-tag">Wolof</span>
+                        <span class="skill-tag">Soft Skills</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expériences professionnelles -->
+            <div class="experiences-section">
+                <h3 class="experiences-title">Expériences professionnelles</h3>
+                <div class="experiences-timeline">
+                    <div class="experience-item">
+                        <div class="experience-period">2 mois</div>
+                        <div class="experience-content">
+                            <h4>SEMOS - Stage</h4>
+                            <p class="experience-desc">Administration Réseaux, Téléphonie sur IP, Windows Server, Réseaux sans fils</p>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-period">1 mois</div>
+                        <div class="experience-content">
+                            <h4>EPT de Thiès - Stage</h4>
+                            <p class="experience-desc">Câblage et Configuration Réseaux Informatique, Installation postes de travail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contactez-moi</h2>
+                <p class="section-subtitle">N'hésitez pas à me contacter pour toute opportunité professionnelle ou collaboration.</p>
+            </div>
+            
+            <div class="contact-container">
+                <!-- Informations de contact -->
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>Informations de contact</h3>
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4>Téléphone</h4>
+                                    <p>77 267 26 96</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>niangtch43@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Adresse</h4>
+                                    <p>Thiès, Tivaouane</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div>
+                                    <h4>Langues</h4>
+                                    <p>Français, Wolof</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Réseaux sociaux -->
+                        <div class="contact-social">
+                            <h4>Suivez-moi</h4>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <div class="contact-form">
+                    <div class="form-card">
+                        <h3>Envoyez-moi un message</h3>
+                        <form id="contactForm">
+                            <div id="formStatus" class="form-status"></div>
+                            <div class="form-group">
+                                <label for="name">Nom complet *</label>
+                                <input type="text" id="name" class="form-control" required placeholder="Votre nom et prénom">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Votre email *</label>
+                                <input type="email" id="email" class="form-control" required placeholder="votre@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Sujet *</label>
+                                <input type="text" id="subject" class="form-control" required placeholder="Objet de votre message">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" class="form-control" required placeholder="Votre message..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-paper-plane"></i> Envoyer le message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <a href="#accueil" >
+                        <span class="text-gradient text-xl font-bold">Moustapha Niang</span>
+                    </a>
+                    <p class="footer-subtitle">Technicien Supérieur en Réseaux et Télécom</p>
+                    <p class="footer-description">Passionné par les nouvelles technologies et l'innovation dans le domaine des réseaux et télécommunications.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navigation rapide</h4>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#projets">Projets</a></li>
+                        <li><a href="#competences">Compétences</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-items">
+                        <p><i class="fas fa-envelope"></i> niangtch43@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> 77 267 26 96</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Thiès, Tivaouane</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 Moustapha Niang. Tous droits réservés.
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal pour les détails des projets -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Bouton retour en haut -->
+    <button id="backToTop" class="back-to-top" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
