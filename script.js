@@ -565,10 +565,10 @@ function initCVDownload() {
     const downloadBtn = document.getElementById('downloadCV');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
-            const cvUrl = 'image/cv fatima.pdf';
+            const cvUrl = 'image/Blue and White Background Simple Resume .pdf';
             const link = document.createElement('a');
             link.href = cvUrl;
-            link.download = 'cv fatima.pdf';
+            link.download = 'Blue and White Background Simple Resume .pdf';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
