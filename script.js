@@ -243,6 +243,28 @@ function animateOnScroll() {
 }
 
 // ===== FORMULAIRE DE CONTACT =====
+
+async function simulateEmailSend(name, email, subject, message) {
+    return new Promise((resolve, reject) => {
+        try {
+            const yourEmail = "niangtch43@gmail.com";
+            const mailtoLink = `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+            )}`;
+            
+            // Ouvrir le client email
+            window.location.href = mailtoLink;
+            
+            // Résoudre la promesse après un court délai
+            setTimeout(() => {
+                resolve(true);
+            }, 1000);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
@@ -340,27 +362,7 @@ function hideFormStatus() {
     }
 }
 
-async function simulateEmailSend(name, email, subject, message) {
-    // Simulation d'un délai d'envoi
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Ici, vous pourriez intégrer un service comme EmailJS, Formspree, ou votre propre backend
-            // Pour cet exemple, nous simulons juste un envoi réussi
-            
-            // Option: Ouvrir le client mail par défaut
-            // const mailtoLink = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-            //     `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-            // )}`;
-            // window.location.href = mailtoLink;
 
-            
-            
-            resolve(true);
-        }, 2000);
-    });
-}
-
-// ===== MODALES DES PROJETS =====
 function initProjectModals() {
     const projectButtons = document.querySelectorAll('.project-detail-btn');
     const modal = document.getElementById('projectModal');
