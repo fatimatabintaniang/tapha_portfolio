@@ -1,6 +1,6 @@
 // ===== CONFIGURATION =====
 const CONFIG = {
-    email: 'niangtch43@gmail.com',
+    email: 'fatimatabintaniang8@gmail.com',
     phone: '77 267 26 96',
     address: 'Thiès, Tivaouane',
     social: {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectModals();
     initCVDownload();
     initBackToTop();
-    
+
     console.log('Portfolio de Moustapha Niang chargé avec succès!');
 });
 
@@ -31,15 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function initTheme() {
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
-    
+
     // Appliquer le thème sauvegardé
     applyTheme(currentTheme);
-    
+
     // Gérer le clic sur le bouton de thème
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
-    
+
     // Mettre à jour l'icône du thème
     updateThemeIcon();
 }
@@ -55,7 +55,7 @@ function applyTheme(theme) {
 function toggleTheme() {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(newTheme);
-    
+
     // Animation de transition
     document.body.style.transition = 'background-color 0.5s ease, color 0.5s ease';
     setTimeout(() => {
@@ -81,7 +81,7 @@ function initNavigation() {
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.querySelector('.nav-links');
     const navLinksItems = document.querySelectorAll('.nav-link');
-    
+
     // Menu mobile
     if (mobileMenu && navLinks) {
         mobileMenu.addEventListener('click', () => {
@@ -97,7 +97,7 @@ function initNavigation() {
                 }
             }
         });
-        
+
         // Fermer le menu en cliquant sur un lien
         navLinksItems.forEach(link => {
             link.addEventListener('click', () => {
@@ -109,7 +109,7 @@ function initNavigation() {
                 }
             });
         });
-        
+
         // Fermer le menu en cliquant en dehors
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu')) {
@@ -122,7 +122,7 @@ function initNavigation() {
             }
         });
     }
-    
+
     // Mise à jour des liens actifs au scroll
     updateActiveNavLink();
     window.addEventListener('scroll', updateActiveNavLink);
@@ -131,19 +131,19 @@ function initNavigation() {
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     let currentSection = '';
     const scrollPosition = window.scrollY + 100;
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        
+
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             currentSection = section.getAttribute('id');
         }
     });
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href').replace('#', '');
@@ -156,7 +156,7 @@ function updateActiveNavLink() {
 // ===== EFFETS DE DÉFILEMENT =====
 function initScrollEffects() {
     const header = document.getElementById('header');
-    
+
     window.addEventListener('scroll', () => {
         // Header au scroll
         if (header) {
@@ -166,10 +166,10 @@ function initScrollEffects() {
                 header.classList.remove('scrolled');
             }
         }
-        
+
         // Bouton retour en haut
         updateBackToTopButton();
-        
+
         // Animations au scroll
         animateOnScroll();
     });
@@ -188,10 +188,10 @@ function initAnimations() {
                 }
             });
         }, { threshold: 0.5 });
-        
+
         statNumbers.forEach(stat => observer.observe(stat));
     }
-    
+
     // Animation des cartes
     const cards = document.querySelectorAll('.project-card, .competence-card');
     if (cards.length > 0) {
@@ -203,7 +203,7 @@ function initAnimations() {
                 }
             });
         }, { threshold: 0.1 });
-        
+
         cards.forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
@@ -218,7 +218,7 @@ function animateNumbers(element) {
     const duration = 2000; // 2 secondes
     const increment = target / (duration / 16); // 60fps
     let current = 0;
-    
+
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -231,119 +231,141 @@ function animateNumbers(element) {
 
 function animateOnScroll() {
     const elements = document.querySelectorAll('.animate-on-scroll');
-    
+
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        
+
         if (elementTop < windowHeight - 100) {
             element.classList.add('animated');
         }
     });
 }
 
-// ===== FORMULAIRE DE CONTACT =====
-
-async function simulateEmailSend(name, email, subject, message) {
-    return new Promise((resolve, reject) => {
-        try {
-            const yourEmail = "niangtch43@gmail.com";
-            const mailtoLink = `mailto:${yourEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-                `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-            )}`;
-            
-            // Ouvrir le client email
-            window.location.href = mailtoLink;
-            
-            // Résoudre la promesse après un court délai
-            setTimeout(() => {
-                resolve(true);
-            }, 1000);
-        } catch (error) {
-            reject(error);
-        }
-    });
-}
-
+// ===== FORMULAIRE DE CONTACT AVEC MAILTO =====
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
-    
+
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            // Récupération des valeurs
+
+            // Récupérer les valeurs
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const subject = document.getElementById('subject').value.trim();
             const message = document.getElementById('message').value.trim();
-            
+
             // Validation
-            if (!validateForm(name, email, subject, message)) {
-                return;
-            }
-            
-            // Afficher le statut d'envoi
-            showFormStatus('Envoi du message en cours...', 'info');
-            
-            // Simuler l'envoi (dans un cas réel, utiliser une API)
-            try {
-                await simulateEmailSend(name, email, subject, message);
-                showFormStatus('Message envoyé avec succès! Je vous répondrai dès que possible.', 'success');
-                contactForm.reset();
-                
-                // Cacher le message après 5 secondes
-                setTimeout(() => {
-                    hideFormStatus();
-                }, 5000);
-                
-            } catch (error) {
-                showFormStatus('Une erreur est survenue. Veuillez réessayer.', 'error');
-                console.error('Erreur d\'envoi:', error);
-            }
+            if (!validateForm(name, email, subject, message)) return;
+
+            // Récupérer le bouton d'envoi
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            const originalClasses = submitBtn.className;
+
+            // Montrer le chargement
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Préparation...';
+            submitBtn.disabled = true;
+
+            showFormStatus('Préparation du message...', 'info');
+
+            // Petite pause pour l'animation
+            setTimeout(() => {
+                try {
+                    // Construire le message complet
+                    const fullMessage = `
+Bonjour Moustapha,
+
+Nouveau message depuis votre portfolio :
+
+Nom: ${name}
+Email: ${email}
+
+Message:
+${message}
+
+---
+Envoyé le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}
+                    `.trim();
+
+                    // Construire le lien mailto
+                    const mailtoLink = `mailto:fatimatabintaniang8@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullMessage)}`;
+
+                    // Ouvrir le client mail (MÉTHODE LA PLUS FIABLE)
+                    const link = document.createElement('a');
+                    link.href = mailtoLink;
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    // Message de succès
+                    showFormStatus('✅ Client mail ouvert !', 'success');
+                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Client mail ouvert';
+                    submitBtn.classList.add('btn-success');
+
+                    // Instructions claires
+                    setTimeout(() => {
+                        showFormStatus('📧 Retournez sur votre client mail et cliquez sur "ENVOYER"', 'info');
+                    }, 1000);
+
+                    // Réinitialiser après 5 secondes
+                    setTimeout(() => {
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('btn-success');
+                        submitBtn.className = originalClasses;
+                        hideFormStatus();
+                    }, 5000);
+
+                } catch (error) {
+                    showFormStatus('❌ Erreur: ' + error.message, 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.className = originalClasses;
+                }
+            }, 1000);
         });
     }
 }
 
+// Fonction de validation inchangée
 function validateForm(name, email, subject, message) {
-    const formStatus = document.getElementById('formStatus');
-    
-    // Vérification des champs requis
     if (!name || !email || !subject || !message) {
-        showFormStatus('Veuillez remplir tous les champs obligatoires.', 'error');
+        showFormStatus('❌ Veuillez remplir tous les champs obligatoires.', 'error');
         return false;
     }
-    
-    // Validation de l'email
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        showFormStatus('Veuillez entrer une adresse email valide.', 'error');
+        showFormStatus('❌ Veuillez entrer une adresse email valide.', 'error');
         return false;
     }
-    
-    // Validation de la longueur du message
+
     if (message.length < 10) {
-        showFormStatus('Le message doit contenir au moins 10 caractères.', 'error');
+        showFormStatus('❌ Le message doit contenir au moins 10 caractères.', 'error');
         return false;
     }
-    
+
     return true;
 }
 
+// Fonctions d'affichage du statut inchangées
 function showFormStatus(message, type) {
     const formStatus = document.getElementById('formStatus');
     if (!formStatus) return;
-    
+
     formStatus.textContent = message;
     formStatus.className = 'form-status';
     formStatus.classList.add(type);
     formStatus.style.display = 'block';
-    
-    // Animation
+
     formStatus.style.opacity = '0';
     formStatus.style.transform = 'translateY(-10px)';
-    
+
     setTimeout(() => {
         formStatus.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         formStatus.style.opacity = '1';
@@ -362,15 +384,14 @@ function hideFormStatus() {
     }
 }
 
-
 function initProjectModals() {
     const projectButtons = document.querySelectorAll('.project-detail-btn');
     const modal = document.getElementById('projectModal');
     const closeModal = document.getElementById('closeModal');
     const modalContent = document.getElementById('modalContent');
-    
+
     if (!modal || !modalContent) return;
-    
+
     // Données des projets
     const projectsData = {
         1: {
@@ -512,22 +533,22 @@ function initProjectModals() {
             `
         }
     };
-    
+
     // Ouvrir la modale
     projectButtons.forEach(button => {
         button.addEventListener('click', () => {
             const projectId = button.getAttribute('data-project');
             const projectData = projectsData[projectId];
-            
+
             if (projectData) {
                 modalContent.innerHTML = projectData.content;
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-                
+
                 // Ajouter une animation d'entrée
                 modalContent.style.opacity = '0';
                 modalContent.style.transform = 'translateY(20px)';
-                
+
                 setTimeout(() => {
                     modalContent.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                     modalContent.style.opacity = '1';
@@ -536,24 +557,24 @@ function initProjectModals() {
             }
         });
     });
-    
+
     // Fermer la modale
     function closeProjectModal() {
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
-    
+
     if (closeModal) {
         closeModal.addEventListener('click', closeProjectModal);
     }
-    
+
     // Fermer en cliquant en dehors
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             closeProjectModal();
         }
     });
-    
+
     // Fermer avec la touche Échap
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.style.display === 'flex') {
@@ -583,7 +604,7 @@ function initCVDownload() {
 // ===== BOUTON RETOUR EN HAUT =====
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
-    
+
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
@@ -596,7 +617,7 @@ function initBackToTop() {
 
 function updateBackToTopButton() {
     const backToTopBtn = document.getElementById('backToTop');
-    
+
     if (backToTopBtn) {
         if (window.scrollY > 300) {
             backToTopBtn.classList.add('visible');
