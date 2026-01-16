@@ -10,6 +10,17 @@ const CONFIG = {
     }
 };
 
+// ===== CONFIGURATION EMAILJS =====
+const EMAILJS_CONFIG = {
+    SERVICE_ID: 'service_dag5k16',
+    TEMPLATE_ID: 'template_m1qfdlf',
+    PUBLIC_KEY: 'hgT0AWIPefomcsnfg',
+    TO_EMAIL: 'fatimatabintaniang8@gmail.com'
+};
+
+// Initialiser EmailJS
+emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
 // ===== ÉTAT GLOBAL =====
 let currentTheme = localStorage.getItem('theme') || 'dark';
 
@@ -242,13 +253,13 @@ function animateOnScroll() {
     });
 }
 
-// ===== FORMULAIRE DE CONTACT AVEC MAILTO =====
+// ===== FORMULAIRE DE CONTACT AVEC EMAILJS =====
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             // Récupérer les valeurs
@@ -263,71 +274,64 @@ function initContactForm() {
             // Récupérer le bouton d'envoi
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            const originalClasses = submitBtn.className;
 
             // Montrer le chargement
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Préparation...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Envoi en cours...';
             submitBtn.disabled = true;
+            showFormStatus('Envoi du message...', 'info');
 
-            showFormStatus('Préparation du message...', 'info');
+            try {
+                // Préparer les données pour EmailJS
+                const templateParams = {
+                    from_name: name,
+                    from_email: email,
+                    subject: subject,
+                    message: message,
+                    date: new Date().toLocaleDateString('fr-FR'),
+                    time: new Date().toLocaleTimeString('fr-FR'),
+                    to_email: EMAILJS_CONFIG.TO_EMAIL
+                };
 
-            // Petite pause pour l'animation
-            setTimeout(() => {
-                try {
-                    // Construire le message complet
-                    const fullMessage = `
-Bonjour Moustapha,
+                // Envoyer l'email avec EmailJS
+                const response = await emailjs.send(
+                    EMAILJS_CONFIG.SERVICE_ID,
+                    EMAILJS_CONFIG.TEMPLATE_ID,
+                    templateParams
+                );
 
-Nouveau message depuis votre portfolio :
+                console.log('Email envoyé avec succès:', response);
 
-Nom: ${name}
-Email: ${email}
+                // Message de succès
+                showFormStatus('✅ Message envoyé avec succès !', 'success');
+                submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Message envoyé !';
+                submitBtn.classList.add('btn-success');
 
-Message:
-${message}
+                // Réinitialiser le formulaire
+                contactForm.reset();
 
----
-Envoyé le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}
-                    `.trim();
-
-                    // Construire le lien mailto
-                    const mailtoLink = `mailto:fatimatabintaniang8@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullMessage)}`;
-
-                    // Ouvrir le client mail (MÉTHODE LA PLUS FIABLE)
-                    const link = document.createElement('a');
-                    link.href = mailtoLink;
-                    link.style.display = 'none';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
-                    // Message de succès
-                    showFormStatus('✅ Client mail ouvert !', 'success');
-                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Client mail ouvert';
-                    submitBtn.classList.add('btn-success');
-
-                    // Instructions claires
-                    setTimeout(() => {
-                        showFormStatus('📧 Retournez sur votre client mail et cliquez sur "ENVOYER"', 'info');
-                    }, 1000);
-
-                    // Réinitialiser après 5 secondes
-                    setTimeout(() => {
-                        contactForm.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('btn-success');
-                        submitBtn.className = originalClasses;
-                        hideFormStatus();
-                    }, 5000);
-
-                } catch (error) {
-                    showFormStatus('❌ Erreur: ' + error.message, 'error');
+                // Réinitialiser après 3 secondes
+                setTimeout(() => {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    submitBtn.className = originalClasses;
-                }
-            }, 1000);
+                    submitBtn.classList.remove('btn-success');
+                    hideFormStatus();
+                }, 3000);
+
+            } catch (error) {
+                console.error('Erreur EmailJS:', error);
+
+                // Message d'erreur
+                showFormStatus('❌ Erreur: ' + (error.text || 'Impossible d\'envoyer le message'), 'error');
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i> Erreur';
+                submitBtn.classList.add('btn-error');
+
+                // Réinitialiser le bouton
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('btn-error');
+                }, 3000);
+            }
         });
     }
 }
